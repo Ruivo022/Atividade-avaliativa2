@@ -1,0 +1,26 @@
+from sklearn import tree
+
+# 1. Preparação dos Dados
+# Características [peso (g), textura (0=lisa, 1=irregular)]
+X = [[150, 0], [130, 0], [180, 1], [160, 1]]
+
+# Rótulos (0 = Maçã, 1 = Laranja)
+Y = [0, 0, 1, 1]
+
+# 2. Criação do Modelo de IA (Árvore de Decisão)
+clf = tree.DecisionTreeClassifier()
+
+# 3. Treinamento da IA
+clf = clf.fit(X, Y)
+
+# 4. Fazendo uma Previsão
+# Testando com um novo item: 160g e textura irregular (1)
+peso = 160
+textura = 1
+resultado = clf.predict([[peso, textura]])
+
+# Exibindo o resultado
+if resultado[0] == 0:
+    print("A IA classificou o item como: Maçã")
+else:
+    print("A IA classificou o item como: Laranja")
