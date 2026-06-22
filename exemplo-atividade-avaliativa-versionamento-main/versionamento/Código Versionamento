@@ -1,0 +1,14 @@
+# 1. Inicializa o controle de versão na pasta do seu projeto
+git init
+
+# 2. Adiciona todos os arquivos da pasta para serem monitorados
+git add .
+
+# 3. Salva a versão atual com uma mensagem descritiva
+git commit -m "Meu primeiro commit: estrutura inicial do projeto"
+
+# 4. Conecta seu projeto local a um repositório na nuvem (ex: GitHub)
+git remote add origin https://github.com
+
+# 5. Envia o código versionado para a nuvem
+git push -u origin main
