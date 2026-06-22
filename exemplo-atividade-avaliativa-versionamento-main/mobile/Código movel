@@ -1,0 +1,16 @@
+import random
+import string
+
+def gerar_codigo_movel(tipo, ano, cor):
+    # Gera um número de 3 dígitos aleatório como ID
+    numero_serie = f"{random.randint(1, 999):03d}"
+    return f"{tipo.upper()}-{ano}-{cor.upper()}-{numero_serie}"
+
+# Gerando 5 códigos de exemplo
+tipo_movel = "GAV" # Gaveteiro
+ano_atual = "26"
+cor_movel = "CIN" # Cinza
+
+for i in range(5):
+    codigo = gerar_codigo_movel(tipo_movel, ano_atual, cor_movel)
+    print(f"Código Gerado: {codigo}")
