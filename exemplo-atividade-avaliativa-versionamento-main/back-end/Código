@@ -1,0 +1,52 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Middleware para permitir que o servidor entenda requisições com formato JSON
+app.use(express.json());
+
+// Banco de dados em memória (simulação)
+let usuarios = [
+    { id: 1, nome: "Ana Silva", email: "ana@email.com" },
+    { id: 2, nome: "Carlos Souza", email: "carlos@email.com" }
+];
+
+// 1. Rota GET: Retorna a lista de todos os usuários
+app.get('/usuarios', (req, res) => {
+    res.status(200).json(usuarios);
+});
+
+// 2. Rota GET por ID: Retorna um usuário específico pelo seu ID
+app.get('/usuarios/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const usuario = usuarios.find(u => u.id === id);
+
+    if (usuario) {
+        res.status(200).json(usuario);
+    } else {
+        res.status(404).json({ mensagem: "Usuário não encontrado." });
+    }
+});
+
+// 3. Rota POST: Adiciona um novo usuário
+app.post('/usuarios', (req, res) => {
+    const { nome, email } = req.body;
+    
+    if (!nome || !email) {
+        return res.status(400).json({ erro: "Nome e email são obrigatórios." });
+    }
+
+    const novoUsuario = {
+        id: usuarios.length + 1,
+        nome: nome,
+        email: email
+    };
+
+    usuarios.push(novoUsuario);
+    res.status(201).json(novoUsuario);
+});
+
+// Inicia o servidor na porta definida
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
+});
